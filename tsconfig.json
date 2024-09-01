@@ -1,0 +1,16 @@
+{
+	"include": ["src"],
+	"compilerOptions": {
+		"exactOptionalPropertyTypes": true,
+		"noFallthroughCasesInSwitch": true,
+		"noImplicitOverride": true,
+		"noPropertyAccessFromIndexSignature": true,
+		"noUncheckedIndexedAccess": true,
+		"strict": true,
+		"module": "NodeNext",
+		"resolveJsonModule": true,
+		"outDir": "dist",
+		"isolatedModules": true,
+		"skipLibCheck": true
+	}
+}

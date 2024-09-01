@@ -1,0 +1,38 @@
+{
+	"name": "gtmeta",
+	"version": "0.1.0",
+	"type": "module",
+	"description": "Generate high-quality metadata and icons for your website.",
+	"keywords": [
+		"metadata",
+		"meta-tags",
+		"icons",
+		"front-end",
+		"cli"
+	],
+	"homepage": "https://github.com/jlachniet/gtmeta",
+	"bugs": "https://github.com/jlachniet/gtmeta/issues",
+	"license": "MIT",
+	"author": "Julian Lachniet (https://github.com/jlachniet)",
+	"files": [
+		"dist"
+	],
+	"bin": {
+		"gtmeta": "dist/index.js"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/jlachniet/gtmeta.git"
+	},
+	"scripts": {
+		"build": "rimraf dist && tsc",
+		"lint": "tsc --noEmit && prettier --check ."
+	},
+	"devDependencies": {
+		"prettier": "^3.3.3",
+		"prettier-plugin-organize-imports": "^4.0.0",
+		"rimraf": "^6.0.1",
+		"typescript": "^5.5.4"
+	},
+	"private": true
+}
