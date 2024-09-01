@@ -1,3 +1,10 @@
 #!/usr/bin/env node
 
-console.log('Hello, World!');
+/**
+ * The main function.
+ */
+export function main() {
+	console.log('Hello, World!');
+}
+
+main();
