@@ -1,23 +1,27 @@
 #!/usr/bin/env node
 
-export const VERSION = '0.1.0';
-export const USAGE_MESSAGE = `gtmeta ${VERSION}
-
-Usage:
-  $ gtmeta <configFile> <outputFolder>
-
-Arguments:
-  configFile      The path to the config file
-  outputFolder    The path to the output folder`;
+import { readFile } from 'fs/promises';
+import { Logger } from './logging.js';
 
 /**
  * The main function.
  */
-function main() {
+async function main() {
 	const [configPath, outputPath, ...otherArgs] = process.argv.slice(2);
 
 	if (!configPath || !outputPath || otherArgs.length > 0) {
-		console.info(USAGE_MESSAGE);
+		Logger.usage();
+		process.exitCode = 1;
+		return;
+	}
+
+	let configRaw: string;
+
+	try {
+		configRaw = await readFile(configPath, 'utf-8');
+	} catch (error) {
+		Logger.error('Failed to read config file');
+		Logger.error((error as NodeJS.ErrnoException).message);
 		process.exitCode = 1;
 		return;
 	}
