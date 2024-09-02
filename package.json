@@ -26,7 +26,7 @@
 	},
 	"scripts": {
 		"build": "rimraf dist && tsc --project tsconfig.build.json",
-		"test": "vitest",
+		"test": "pnpm build && vitest",
 		"coverage": "vitest --coverage",
 		"lint": "tsc && eslint . && prettier --check ."
 	},

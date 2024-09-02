@@ -13,8 +13,14 @@ Arguments:
 /**
  * The main function.
  */
-export function main() {
-	console.info(USAGE_MESSAGE);
+function main() {
+	const [configPath, outputPath, ...otherArgs] = process.argv.slice(2);
+
+	if (!configPath || !outputPath || otherArgs.length > 0) {
+		console.info(USAGE_MESSAGE);
+		process.exitCode = 1;
+		return;
+	}
 }
 
 main();
