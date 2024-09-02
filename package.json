@@ -28,10 +28,18 @@
 		"build": "rimraf dist && tsc --project tsconfig.build.json",
 		"test": "vitest",
 		"coverage": "vitest --coverage",
-		"lint": "tsc --noEmit && prettier --check ."
+		"lint": "tsc && eslint . && prettier --check ."
 	},
 	"devDependencies": {
+		"@stylistic/eslint-plugin": "^2.7.2",
+		"@typescript-eslint/eslint-plugin": "^8.3.0",
+		"@typescript-eslint/parser": "^8.3.0",
 		"@vitest/coverage-v8": "^2.0.5",
+		"eslint": "^8.57.0",
+		"eslint-config-prettier": "^9.1.0",
+		"eslint-import-resolver-typescript": "^3.6.3",
+		"eslint-plugin-import": "^2.29.1",
+		"eslint-plugin-tsdoc": "^0.3.0",
 		"prettier": "^3.3.3",
 		"prettier-plugin-organize-imports": "^4.0.0",
 		"rimraf": "^6.0.1",
