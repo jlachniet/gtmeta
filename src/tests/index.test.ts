@@ -33,7 +33,7 @@ describe('dist/index.js', () => {
 		});
 	});
 
-	it('should exit with code 1 and log the usage message if two arguments are provided', async () => {
+	it('should exit with code 0 and log the usage message if two arguments are provided', async () => {
 		expect(await getExecDetails('node dist arg1 arg2')).toEqual({
 			exitCode: 0,
 			stdout: '',

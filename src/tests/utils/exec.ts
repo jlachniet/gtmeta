@@ -1,4 +1,4 @@
-import { exec } from 'child_process';
+import { exec } from 'node:child_process';
 
 /**
  * The details of a shell command execution.
@@ -19,9 +19,10 @@ interface ExecDetails {
 }
 
 /**
- * Executes a shell command and returns the exit code and output.
+ * Executes a shell command and returns a Promise resolving to the exit code,
+ * standard output, and standard error.
  * @param command - The command
- * @returns The exit code and output
+ * @returns A Promise resolving to the details of the execution
  */
 export async function getExecDetails(command: string) {
 	return new Promise<ExecDetails>((resolve) => {
