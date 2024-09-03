@@ -11,23 +11,21 @@ describe('dist/index.js', () => {
 		});
 	});
 
-	it('should exit with code 1 if only one argument is provided', async () => {
+	it('should exit with code 1 if only one argument is provided', async () =>
 		expect(await getExecDetails('node dist arg1')).toEqual({
 			exitCode: 1,
 			stdout: USAGE_MESSAGE,
 			stderr: '',
-		});
-	});
+		}));
 
-	it('should exit with code 1 if more than two arguments are provided', async () => {
+	it('should exit with code 1 if more than two arguments are provided', async () =>
 		expect(await getExecDetails('node dist arg1 arg2 arg3')).toEqual({
 			exitCode: 1,
 			stdout: USAGE_MESSAGE,
 			stderr: '',
-		});
-	});
+		}));
 
-	it('should exit with code 1 if the config path is invalid', async () => {
+	it('should exit with code 1 if the config path is invalid', async () =>
 		expect(await getExecDetails('node dist invalid-path arg2')).toEqual({
 			exitCode: 1,
 			stdout: '',
@@ -35,10 +33,9 @@ describe('dist/index.js', () => {
 				'error Failed to read config file',
 				"error ENOENT: no such file or directory, open 'invalid-path'",
 			].join('\n'),
-		});
-	});
+		}));
 
-	it('should exit with code 1 if the config file is not valid JSON', async () => {
+	it('should exit with code 1 if the config file is not valid JSON', async () =>
 		expect(
 			await getExecDetails('node dist examples/invalid-json.json arg2'),
 		).toEqual({
@@ -48,16 +45,23 @@ describe('dist/index.js', () => {
 				'error Failed to parse config file as JSON',
 				'error Unexpected token \'T\', "This is a "... is not valid JSON',
 			].join('\n'),
-		});
+		}));
+
+	it('should exit with code 1 if the config file does not match the schema', async () => {
+		const { exitCode, stderr } = await getExecDetails(
+			'node dist examples/invalid-config.json arg2',
+		);
+
+		expect(exitCode).toBe(1);
+		expect(stderr).toContain('error Invalid config file');
 	});
 
-	it('should exit with code 0 if valid arguments are provided', async () => {
+	it('should exit with code 0 if valid arguments are provided', async () =>
 		expect(
 			await getExecDetails('node dist examples/minimal.json arg2'),
 		).toEqual({
 			exitCode: 0,
 			stdout: '',
 			stderr: '',
-		});
-	});
+		}));
 });
