@@ -16,12 +16,22 @@ async function main() {
 	}
 
 	let configRaw: string;
+	let configJsonParsed: unknown;
 
 	try {
 		configRaw = await readFile(configPath, 'utf-8');
 	} catch (error) {
 		Logger.error('Failed to read config file');
 		Logger.error((error as NodeJS.ErrnoException).message);
+		process.exitCode = 1;
+		return;
+	}
+
+	try {
+		configJsonParsed = JSON.parse(configRaw);
+	} catch (error) {
+		Logger.error('Failed to parse config file as JSON');
+		Logger.error((error as SyntaxError).message);
 		process.exitCode = 1;
 		return;
 	}

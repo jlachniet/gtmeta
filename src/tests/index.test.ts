@@ -38,6 +38,19 @@ describe('dist/index.js', () => {
 		});
 	});
 
+	it('should exit with code 1 if the config file is not valid JSON', async () => {
+		expect(
+			await getExecDetails('node dist examples/invalid-json.json arg2'),
+		).toEqual({
+			exitCode: 1,
+			stdout: '',
+			stderr: [
+				'error Failed to parse config file as JSON',
+				'error Unexpected token \'T\', "This is a "... is not valid JSON',
+			].join('\n'),
+		});
+	});
+
 	it('should exit with code 0 if valid arguments are provided', async () => {
 		expect(
 			await getExecDetails('node dist examples/minimal.json arg2'),
