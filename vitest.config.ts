@@ -1,4 +1,4 @@
-import { UserConfig } from 'vitest/config';
+import { coverageConfigDefaults, UserConfig } from 'vitest/config';
 
 const config: UserConfig = {
 	test: {
@@ -6,6 +6,7 @@ const config: UserConfig = {
 		reporters: 'basic',
 		silent: true,
 		coverage: {
+			exclude: [...coverageConfigDefaults.exclude, 'src/index.ts'],
 			reporter: ['text'],
 		},
 		clearMocks: true,
